@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Enfield Store</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="royalenfieldloginstyle.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="card mt-5" id="login-card">
+            <h1>Login to Royal Enfield Store</h1>
+            <form action="royalmainpage.html" method="post" id="login-form">
+                <div class="form-group">
+                    <label for="login-username">Username</label>
+                    <input type="text" id="login-username" name="username" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-dark">Login</button>
+            </form>
+            <p class="mt-3">Don't have an account? <a href="javascript:void(0);" id="signup-link">Sign Up</a></p>
+        </div>
+
+        <!-- Signup Form -->
+        <div class="card mt-5" id="signup-card" style="display: none;">
+            <h1>Sign Up for Royal Enfield Store</h1>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" name="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-username">Username</label>
+                    <input type="text" id="signup-username" name="username" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" name="password" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-mobile">Mobile Number</label>
+                    <input type="text" id="signup-mobile" name="mobile" class="form-control" required>
+                </div>
+                <button type="button" class="btn btn-dark" id="send-otp">Send OTP</button>
+            </form>
+            <p class="mt-3">Already have an account? <a href="javascript:void(0);" id="login-link">Login</a></p>
+        </div>
+
+        <!-- OTP Verification Modal -->
+        <div id="otp-modal" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Enter OTP</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="otp-input">Enter the OTP sent to your mobile number</label>
+                            <input type="text" id="otp-input" class="form-control" required>
+                        </div>
+                        <button type="button" class="btn btn-dark" id="verify-otp">Verify OTP</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script>
+        // Toggling between login and signup forms
+        document.getElementById('signup-link').addEventListener('click', function() {
+            document.getElementById('login-card').style.display = 'none';
+            document.getElementById('signup-card').style.display = 'block';
+        });
+
+        document.getElementById('login-link').addEventListener('click', function() {
+            document.getElementById('login-card').style.display = 'block';
+            document.getElementById('signup-card').style.display = 'none';
+        });
+
+        // Send OTP function (simulated)
+        document.getElementById('send-otp').addEventListener('click', function() {
+            const mobileNumber = document.getElementById('signup-mobile').value;
+            if (mobileNumber) {
+                alert('OTP sent to ' + mobileNumber);
+                $('#otp-modal').modal('show'); // Show OTP modal
+            } else {
+                alert('Please enter a valid mobile number.');
+            }
+        });
+
+        // Verify OTP function (simulated)
+        document.getElementById('verify-otp').addEventListener('click', function() {
+            const otpInput = document.getElementById('otp-input').value;
+            if (otpInput === "123456") { // Assuming 123456 is the OTP for now
+                alert('OTP Verified! Redirecting to Login...');
+                $('#otp-modal').modal('hide'); // Close OTP modal
+                // Simulate redirect after OTP verification
+                document.getElementById('signup-card').style.display = 'none';
+                document.getElementById('login-card').style.display = 'block';
+            } else {
+                alert('Invalid OTP! Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>
